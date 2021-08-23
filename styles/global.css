@@ -1,7 +1,7 @@
 /* 404 Page */
 
 .page_not_found_bg {
-  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  background-image: url('../public/images/404/404_bg_img.gif');
   height: 400px;
   background-position: center;
 }

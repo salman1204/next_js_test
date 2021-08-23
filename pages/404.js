@@ -1,7 +1,17 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { Container, Row } from 'react-bootstrap'
 
 const Custom404 = () => {
+  const router = useRouter()
+
+  useEffect(() => {
+    setTimeout(() => {
+      router.push('/')
+    }, 5000)
+  }, [])
+
   return (
     <section className="pt-5">
       <Container>
@@ -11,17 +21,15 @@ const Custom404 = () => {
               <div className="page_not_found_bg">
                 <h1 className="text-center display-1">404</h1>
               </div>
-              <>
+              <div>
                 <h3 className="h2">Look like you're lost</h3>
-
                 <p>the page you are looking for not avaible!</p>
-
                 <Link href="/">
                   <a className="link_404 d-inline-block text-white mt-3 px-3 py-3">
                     Go to Home
                   </a>
                 </Link>
-              </>
+              </div>
             </div>
           </div>
         </Row>

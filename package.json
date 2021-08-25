@@ -17,6 +17,7 @@
     "react-icons": "^4.2.0",
     "react-redux": "^7.2.4",
     "react-sliding-side-panel": "^2.0.3",
+    "react-transition-group": "^4.4.2",
     "redux": "^4.1.1",
     "redux-thunk": "^2.3.0"
   }

@@ -1,0 +1,5 @@
+.cart__panel {
+    height: 100vh;
+    background-color: white;
+    transition: all 3s;
+}

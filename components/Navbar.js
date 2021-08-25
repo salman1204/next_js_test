@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import { FiHeart, FiPhoneCall, FiUser } from 'react-icons/fi'
+import { FiHeart, FiPhoneCall, FiShoppingCart, FiUser } from 'react-icons/fi'
+import { CSSTransition } from 'react-transition-group'
 import styles from '../styles/Navbar.module.css'
 import CartSidePanel from './CartSidePanel'
-
 const Navbar = () => {
   const [openPanel, setOpenPanel] = useState(false)
 
@@ -35,19 +35,23 @@ const Navbar = () => {
                 <FiUser /> <span className="mx-1">Login</span>
               </a>
             </Link>
-            <Link href="">
-              <a
-                className="text-decoration-none bg-dark text-white mx-2 p-2"
-                onClick={() => setOpenPanel(true)}
-              >
-                <span className="mx-1">My Cart</span>
-              </a>
-            </Link>
+            <a
+              className="text-decoration-none bg-dark text-white mx-2 p-2"
+              style={{ cursor: 'pointer' }}
+              onClick={() => setOpenPanel(true)}
+            >
+              <FiShoppingCart /> <span className="mx-1">My Cart</span>
+            </a>
           </Col>
         </Row>
-        <Row>
-          {openPanel && <CartSidePanel openPanelHandler={openPanelHandler} />}
-        </Row>
+        <CSSTransition
+          in={openPanel}
+          className="slide"
+          timeout={350}
+          unmountOnExit
+        >
+          <CartSidePanel openPanelHandler={openPanelHandler} />
+        </CSSTransition>
       </Container>
     </div>
   )

@@ -1,0 +1,8 @@
+.top__bar {
+  font-size: 0.9rem;
+  border-bottom: 1px solid #dadada;
+}
+
+.top__bar span:hover {
+  color: #87c9f5;
+}

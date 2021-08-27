@@ -5,6 +5,7 @@ export default function Home() {
     <>
       <Head>
         <title>Signature BD</title>
+        <link rel="favicon icon" href="/favicon.png" />
         <meta name="keywords" content="signature bd" />
       </Head>
       <div>

@@ -6,3 +6,8 @@
 .top__bar span:hover {
   color: #87c9f5;
 }
+
+.top__bar span {
+  cursor: pointer;
+}
+

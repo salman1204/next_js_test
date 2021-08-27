@@ -1,61 +1,64 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Col, Container, Row } from 'react-bootstrap'
-import { FiHeart, FiPhoneCall, FiShoppingCart, FiUser } from 'react-icons/fi'
-import { useDispatch, useSelector } from 'react-redux'
-import { CSSTransition } from 'react-transition-group'
+import { FiHeart, FiShoppingCart, FiUser, FiSearch } from 'react-icons/fi'
 import styles from '../styles/Topbar.module.css'
-import CartSidePanel from './CartSidePanel'
-
 
 const Topbar = () => {
-  const slideCartOpen = useSelector((state) => state.slideCardOpenReducer)
-  const dispatch = useDispatch()
-
   return (
     <div className={styles.top__bar}>
-      <>
-        <CSSTransition
-          in={slideCartOpen}
-          timeout={450}
-          classNames="panel-container-right"
-          unmountOnExit
-        >
-          <CartSidePanel />
-        </CSSTransition>
-      </>
       <Container fluid="lg">
         <Row>
           <Col
-            lg={8}
-            md={4}
-            sm={5}
+            lg={3}
+            md={3}
+            sm={2}
+            xs ={3}
             className="text-muted d-flex align-items-center"
           >
-            <a
-              href="tel:+8801521109830"
-              className="text-decoration-none text-muted d-none d-sm-block mx-2 "
-            >
-              <FiPhoneCall /> (+88) 018-18058362
-            </a>
+            <Link href="/">
+              
+                <Image
+                  src="/images/Logo/logo.png"
+                  alt="company logo"
+                  width={130}
+                  height={67}
+                />
+  
+            </Link>
           </Col>
-          <Col lg={4} md={8} sm={7} className="d-flex justify-content-end pe-0">
+          <Col lg={6} md={5} sm={6} xs={6} className="d-flex align-items-center">
+            <div className="input-group">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Search anything..."
+              />
+              <div className="input-group-append d-none d-md-block">
+                <button className="btn btn-outline-secondary ms-1" type="button">
+                  <FiSearch/>
+                </button>
+              </div>
+            </div>
+          </Col>
+          <Col lg={3} md={4} sm={3} xs={3} className="d-flex justify-content-end pe-0">
             <Link href="/wishList">
-              <a className="text-decoration-none text-muted mx-2 d-flex align-items-center">
-                <FiHeart /> <span className="mx-1">Wish List</span>
-              </a>
+              <span className="text-decoration-none text-muted mx-2 d-flex align-items-center">
+                <FiHeart />{' '}
+                <span className="d-none d-md-block mx-md-1">Wish List</span>
+              </span>
             </Link>
             <Link href="/">
-              <a className="text-decoration-none text-muted mx-2 d-flex align-items-center">
-                <FiUser /> <span className="mx-1">Login</span>
-              </a>
+              <span className="text-decoration-none text-muted mx-2 d-flex align-items-center">
+                <FiUser /> <span className="d-none d-md-block mx-1">Login</span>
+              </span>
             </Link>
-            <a
-              className="text-decoration-none bg-dark text-white p-2"
-              style={{ cursor: 'pointer' }}
-              onClick={() => dispatch({ type: 'SLIDE_CART_OPEN' })}
-            >
-              <FiShoppingCart /> <span className="mx-1">My Cart</span>
-            </a>
+            <Link href="cart">
+              <span className="text-decoration-none d-flex align-items-center bg-dark text-white p-2">
+                <FiShoppingCart className="d-none d-sm-block "/>
+                <span className="mx-1">Cart(0)</span>
+              </span>
+            </Link>
           </Col>
         </Row>
       </Container>

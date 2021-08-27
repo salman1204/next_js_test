@@ -1,32 +1,22 @@
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import SlidingPanel from 'react-sliding-side-panel'
 import 'react-sliding-side-panel/lib/index.css'
+import slidePanelSize from '../helpers/slidePanelSize'
 import styles from '../styles/CartSidePanel.module.css'
 
-const CartSidePanel = ({ openPanelHandler }) => {
-  const [openPanel, setOpenPanel] = useState(true)
-  const screenSize = window.innerWidth
+const CartSidePanel = () => {
+  const slideCartOpen = useSelector((state) => state.slideCardOpenReducer)
+  const dispatch = useDispatch()
 
-  let panelSize = 25
-
-  if (screenSize < 650) {
-    panelSize = 60
-  } else if (screenSize > 650 && screenSize < 900) {
-    panelSize = 45
-  } else if (screenSize > 900 && screenSize < 1200) {
-    panelSize = 35
-  } else {
-    panelSize = 25
-  }
+  let panelSize = slidePanelSize()
 
   return (
     <div>
       <SlidingPanel
         type="right"
-        isOpen={openPanel}
+        isOpen={slideCartOpen}
         backdropClicked={() => {
-          setOpenPanel(false)
-          openPanelHandler(false)
+          dispatch({ type: 'SLIDE_CART_OPEN' })
         }}
         size={panelSize}
         noBackdrop={false}
@@ -37,8 +27,7 @@ const CartSidePanel = ({ openPanelHandler }) => {
             type="button"
             className="close-button"
             onClick={() => {
-              setOpenPanel(false)
-              openPanelHandler(false)
+              dispatch({ type: 'SLIDE_CART_OPEN' })
             }}
           >
             close

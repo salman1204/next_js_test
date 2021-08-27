@@ -1,33 +1,36 @@
 import Link from 'next/link'
-import { useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { FiHeart, FiPhoneCall, FiShoppingCart, FiUser } from 'react-icons/fi'
+import { useDispatch, useSelector } from 'react-redux'
 import { CSSTransition } from 'react-transition-group'
 import styles from '../styles/Topbar.module.css'
 import CartSidePanel from './CartSidePanel'
 
-const Topbar = () => {
-  const [openPanel, setOpenPanel] = useState(false)
 
-  const openPanelHandler = (event) => {
-    setOpenPanel(event)
-  }
+const Topbar = () => {
+  const slideCartOpen = useSelector((state) => state.slideCardOpenReducer)
+  const dispatch = useDispatch()
 
   return (
     <div className={styles.top__bar}>
       <>
         <CSSTransition
-          in={openPanel}
+          in={slideCartOpen}
           timeout={450}
           classNames="panel-container-right"
           unmountOnExit
-        >  
-          <CartSidePanel openPanelHandler={openPanelHandler} />
+        >
+          <CartSidePanel />
         </CSSTransition>
       </>
       <Container fluid="lg">
         <Row>
-          <Col lg={8} md={4} sm={5} className="text-muted d-flex align-items-center">
+          <Col
+            lg={8}
+            md={4}
+            sm={5}
+            className="text-muted d-flex align-items-center"
+          >
             <a
               href="tel:+8801521109830"
               className="text-decoration-none text-muted d-none d-sm-block mx-2 "
@@ -49,7 +52,7 @@ const Topbar = () => {
             <a
               className="text-decoration-none bg-dark text-white p-2"
               style={{ cursor: 'pointer' }}
-              onClick={() => setOpenPanel(true)}
+              onClick={() => dispatch({ type: 'SLIDE_CART_OPEN' })}
             >
               <FiShoppingCart /> <span className="mx-1">My Cart</span>
             </a>
